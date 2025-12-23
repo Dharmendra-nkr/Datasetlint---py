@@ -1,29 +1,49 @@
 # datasetlint
 
-DatasetLint is a lightweight checker to validate tabular (CSV/JSON) and image folder datasets before model training.
+DatasetLint is a tiny CLI to lint datasets before training. It works on tabular (CSV/JSON) and folder-structured image datasets.
 
 ## Install
-```
-pip install datasetlint
-```
+- User install: `pip install datasetlint`
+- Dev install: `pip install -e .`
 
-For local development:
+## Quickstart
 ```
-pip install -e .
-```
-
-## Usage
-```
+# Tabular
 datasetlint data.csv --label target
-datasetlint images/
+
+# Images (folders per class)
+datasetlint path/to/images/
 ```
 
-## Features
-- Tabular: missing values, duplicates, class distribution and imbalance, data type inconsistencies.
-- Images: class counts, corrupt images, empty files, missing label folders, imbalance ratio.
+### What you get (tabular)
+- Row/column counts
+- Missing values per column
+- Duplicate row count
+- Class distribution + imbalance ratio (when `--label` is provided)
+- Basic data type inconsistency detection per column
+
+### What you get (images)
+- Class counts (per folder)
+- Missing label folders flag
+- Empty file detection
+- Corrupt image detection
+- Class imbalance ratio
+
+## CLI
+- `datasetlint PATH [--label LABEL_COLUMN]`
+- PATH ending with `.csv` or `.json` is treated as tabular; otherwise treated as an image root folder.
 
 ## Development
-Run tests:
 ```
+python -m venv venv
+venv\Scripts\activate  # Windows (or source venv/bin/activate)
+pip install -e .
 pytest
+```
+
+## Publish (summary)
+```
+pip install build twine
+python -m build
+twine upload dist/*
 ```
