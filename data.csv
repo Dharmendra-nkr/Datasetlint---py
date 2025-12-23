@@ -1,0 +1,6 @@
+id,age,gender,income,target
+1,23,M,30000,low
+2,45,F,80000,high
+3,,M,50000,medium
+4,35,F,80000,high
+4,35,F,80000,high

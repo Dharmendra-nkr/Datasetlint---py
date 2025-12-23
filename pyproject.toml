@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "datasetlint"
+version = "0.1.0"
+description = "Lint and validate ML datasets before training"
+authors = [{name="Your Name", email="you@email.com"}]
+dependencies = ["pandas", "pillow", "click", "rich"]
+
+[tool.setuptools]
+packages = ["datasetlint"]
+
+[project.scripts]
+datasetlint = "datasetlint.cli:main"
